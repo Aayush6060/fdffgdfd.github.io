@@ -16,7 +16,7 @@ function press(value) {
     updateDisplay(input || "0", "");
   } else if (value === "=") {
     try {
-      eval(input); // Calculation happens but not shown
+      eval(input);
       showLove();
       input = "";
     } catch {
@@ -36,7 +36,7 @@ function updateDisplay(line1, line2) {
 }
 
 function showLove() {
-  updateDisplay("I LOVE YOU Na BABYYY ❤️", "Jaannn maan bhi jao ab ❤️", "mala fakt tuchh havi an babe 🥰" " kalyani maannn jao an yr ❤️");
+  updateDisplay("I LOVE YOU BABYYY ❤️", "Jaannn maan bhi jao ab ❤️");
   burstHearts();
 }
 
@@ -48,7 +48,8 @@ function toggleMusic() {
   if (musicPlaying) {
     bgMusic.pause();
   } else {
-    bgMusic.play();
+    bgMusic.volume = 0.5;
+    bgMusic.play().catch(err => console.log("Audio error:", err));
   }
   musicPlaying = !musicPlaying;
 }
@@ -76,11 +77,20 @@ function burstHearts() {
     heartsContainer.appendChild(heart);
     setTimeout(() => heart.remove(), 1000);
   }
-
-
 }
 
-// Exit Message for Kalyani
+// Continuous falling hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = `${Math.random() * 100}%`;
+  heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+  heart.innerHTML = "❤️";
+  heartsContainer.appendChild(heart);
+  setTimeout(() => heart.remove(), 4000);
+}, 300);
+
+// Exit message for Kalyani
 window.addEventListener("beforeunload", function (e) {
   e.preventDefault();
   e.returnValue = "Kalyani, you are the most special part of this calculator ❤️";
