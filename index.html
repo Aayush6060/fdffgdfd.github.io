@@ -1,150 +1,65 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  justify-content: center;
-  transition: background 0.3s ease;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love Calculator ❤️ for Kalyani</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Dark Mode Toggle -->
+  <div class="theme-toggle">
+    <button onclick="toggleTheme()">🌓</button>
+  </div>
 
-:root {
-  --bg: #fff0f5;
-  --text: #d6336c;
-  --card: white;
-  --button-bg: white;
-  --button-hover: #fce4ec;
-}
+  <!-- Music Toggle -->
+  <div class="music-toggle">
+    <button onclick="toggleMusic()">🎵</button>
+  </div>
 
-body.dark {
-  --bg: #1a1a1a;
-  --text: #ff99aa;
-  --card: #2a2a2a;
-  --button-bg: #333;
-  --button-hover: #444;
-}
+  <!-- Falling Hearts -->
+  <div class="hearts-container" id="hearts"></div>
 
-.theme-toggle {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  z-index: 10;
-}
+  <!-- Calculator UI -->
+  <div class="calculator">
+    <div class="header">For My Love, Kalyani ❤️</div>
+    <div id="display" class="display">
+      <div id="message1">0</div>
+      <div id="message2"></div>
+    </div>
+    <div class="buttons">
+      <button onclick="press('C')">C</button>
+      <button onclick="press('/')">/</button>
+      <button onclick="press('*')">*</button>
+      <button onclick="press('DEL')">⌫</button>
 
-.theme-toggle button,
-.music-toggle button {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: var(--text);
-}
+      <button onclick="press('7')">7</button>
+      <button onclick="press('8')">8</button>
+      <button onclick="press('9')">9</button>
+      <button onclick="press('-')">-</button>
 
-.music-toggle {
-  position: absolute;
-  bottom: 15px;
-  right: 20px;
-  z-index: 10;
-}
+      <button onclick="press('4')">4</button>
+      <button onclick="press('5')">5</button>
+      <button onclick="press('6')">6</button>
+      <button onclick="press('+')">+</button>
 
-.calculator {
-  background-color: var(--card);
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  width: 330px;
-  overflow: hidden;
-  z-index: 1;
-  position: relative;
-  animation: fadeIn 1s ease;
-}
+      <button onclick="press('1')">1</button>
+      <button onclick="press('2')">2</button>
+      <button onclick="press('3')">3</button>
+      <button onclick="press('=')">=</button>
 
-.header {
-  text-align: center;
-  font-size: 22px;
-  padding: 15px;
-  background: linear-gradient(to right, #ff5e78, #ff99aa);
-  color: white;
-  font-weight: bold;
-}
+      <button onclick="press('0')" class="zero">0</button>
+      <button onclick="press('.')">.</button>
+    </div>
+  </div>
 
-.display {
-  background-color: var(--button-hover);
-  padding: 20px;
-  font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  height: 80px;
-  justify-content: center;
-  text-align: right;
-}
+  <!-- Audio Elements -->
+  <audio id="clickSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_573848c671.mp3"></audio>
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/03/audio_6c1deee3cd.mp3" type="audio/mp3" />
+  </audio>
 
-#message1 {
-  font-weight: bold;
-}
-
-#message2 {
-  font-size: 15px;
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background-color: var(--card);
-}
-
-button {
-  font-size: 20px;
-  padding: 20px;
-  background-color: var(--button-bg);
-  border: 1px solid #eee;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-button:hover {
-  background-color: var(--button-hover);
-}
-
-.zero {
-  grid-column: span 2;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-30px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-.hearts-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.heart {
-  position: absolute;
-  color: red;
-  font-size: 20px;
-  animation: fall 4s linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(-100px) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
+  <script src="script.js"></script>
+</body>
+</html>
 
