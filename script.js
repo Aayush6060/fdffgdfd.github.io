@@ -25,7 +25,7 @@ function press(value) {
   }
 }
 
-function updateDisplay(line1, line2) {
+function updateDisplay(line1, line2, line3, line4) {
   document.getElementById("message1").textContent = line1;
   document.getElementById("message2").textContent = line2;
   document.getElementById("message3").textContent = line3;
