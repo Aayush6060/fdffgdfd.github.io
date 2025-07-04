@@ -19,7 +19,6 @@ body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
   background-color: var(--bg);
   color: var(--text);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,29 +27,17 @@ body {
   transition: background 0.3s ease;
 }
 
-.theme-toggle,
-.music-toggle {
-  position: absolute;
-  z-index: 10;
-}
-
 .theme-toggle {
+  position: absolute;
   top: 10px;
-  right: 60px;
-}
-
-.music-toggle {
-  bottom: 15px;
   right: 20px;
 }
 
-.theme-toggle button,
-.music-toggle button {
+.theme-toggle button {
   background: none;
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: var(--text);
 }
 
 .calculator {
@@ -59,8 +46,6 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   width: 330px;
   overflow: hidden;
-  z-index: 1;
-  position: relative;
   animation: fadeIn 1s ease;
 }
 
@@ -118,35 +103,4 @@ button:hover {
 @keyframes fadeIn {
   from {opacity: 0; transform: translateY(-30px);}
   to {opacity: 1; transform: translateY(0);}
-}
-
-/* Falling Hearts */
-.hearts-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.heart {
-  position: absolute;
-  color: red;
-  font-size: 20px;
-  animation: fall 4s linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(-100px) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
-  }
 }
