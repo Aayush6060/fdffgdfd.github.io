@@ -76,6 +76,17 @@ function burstHearts() {
     heartsContainer.appendChild(heart);
     setTimeout(() => heart.remove(), 1000);
   }
+  // Continuous falling hearts loop
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = `${Math.random() * 100}%`;
+  heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+  heart.innerHTML = "❤️";
+  heartsContainer.appendChild(heart);
+  setTimeout(() => heart.remove(), 4000);
+}, 300);
+
 }
 
 // Exit Message for Kalyani
