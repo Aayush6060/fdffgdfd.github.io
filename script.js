@@ -28,10 +28,12 @@ function press(value) {
 function updateDisplay(line1, line2) {
   document.getElementById("message1").textContent = line1;
   document.getElementById("message2").textContent = line2;
+  document.getElementById("message3").textContent = line3;
+  document.getElementById("message4").textContent = line4;
 }
 
 function showLove() {
-  updateDisplay("I LOVE YOU Na BABYYY ❤️", "Jaannn maan bhi jao ab ❤️", "mala fakt tuchh havi an babe 🥰", " kalyani maannn jao an yr ❤️");
+  updateDisplay("I LOVE YOU Na BABYYY ❤️", "Jaannn maan bhi jao ab ❤️", "mala fakt tuchh havi an babe 🥰", " maannn jao an ❤️❤️");
   burstHearts();
 }
 
