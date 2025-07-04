@@ -1,152 +1,85 @@
-:root {
-  --bg: #fff0f5;
-  --text: #d6336c;
-  --card: white;
-  --button-bg: white;
-  --button-hover: #fce4ec;
-}
+let input = "";
+const sound = document.getElementById("clickSound");
+const bgMusic = document.getElementById("bgMusic");
+const heartsContainer = document.getElementById("hearts");
+let musicPlaying = false;
 
-body.dark {
-  --bg: #1a1a1a;
-  --text: #ff99aa;
-  --card: #2a2a2a;
-  --button-bg: #333;
-  --button-hover: #444;
-}
+function press(value) {
+  sound.currentTime = 0;
+  sound.play();
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  justify-content: center;
-  transition: background 0.3s ease;
-}
-
-.theme-toggle,
-.music-toggle {
-  position: absolute;
-  z-index: 10;
-}
-
-.theme-toggle {
-  top: 10px;
-  right: 60px;
-}
-
-.music-toggle {
-  bottom: 15px;
-  right: 20px;
-}
-
-.theme-toggle button,
-.music-toggle button {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: var(--text);
-}
-
-.calculator {
-  background-color: var(--card);
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  width: 330px;
-  overflow: hidden;
-  z-index: 1;
-  position: relative;
-  animation: fadeIn 1s ease;
-}
-
-.header {
-  text-align: center;
-  font-size: 22px;
-  padding: 15px;
-  background: linear-gradient(to right, #ff5e78, #ff99aa);
-  color: white;
-  font-weight: bold;
-}
-
-.display {
-  background-color: var(--button-hover);
-  padding: 20px;
-  font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  height: 80px;
-  justify-content: center;
-  text-align: right;
-}
-
-#message1 {
-  font-weight: bold;
-}
-
-#message2 {
-  font-size: 15px;
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background-color: var(--card);
-}
-
-button {
-  font-size: 20px;
-  padding: 20px;
-  background-color: var(--button-bg);
-  border: 1px solid #eee;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-button:hover {
-  background-color: var(--button-hover);
-}
-
-.zero {
-  grid-column: span 2;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-30px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* Hearts Falling */
-.hearts-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.heart {
-  position: absolute;
-  color: red;
-  font-size: 20px;
-  animation: fall 4s linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(-100px) rotate(0deg);
-    opacity: 1;
+  if (value === "C") {
+    input = "";
+    updateDisplay("0", "");
+  } else if (value === "DEL") {
+    input = input.slice(0, -1);
+    updateDisplay(input || "0", "");
+  } else if (value === "=") {
+    try {
+      eval(input); // Calculation happens but not shown
+      showLove();
+      input = "";
+    } catch {
+      updateDisplay("Error", "");
+    }
+  } else {
+    input += value;
+    updateDisplay(input, "");
   }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
+
+  createRandomHeart();
+}
+
+function updateDisplay(line1, line2) {
+  document.getElementById("message1").textContent = line1;
+  document.getElementById("message2").textContent = line2;
+}
+
+function showLove() {
+  updateDisplay("I LOVE YOU BABYYY ❤️", "Jaannn maan bhi jao ab ❤️");
+  burstHearts();
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
+
+function toggleMusic() {
+  if (musicPlaying) {
+    bgMusic.pause();
+  } else {
+    bgMusic.play();
+  }
+  musicPlaying = !musicPlaying;
+}
+
+function createRandomHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = `${Math.random() * 100}%`;
+  heart.style.fontSize = `${Math.random() * 15 + 10}px`;
+  heart.innerHTML = "❤️";
+  heartsContainer.appendChild(heart);
+  setTimeout(() => heart.remove(), 3000);
+}
+
+function burstHearts() {
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = `${50 + (Math.random() - 0.5) * 100}%`;
+    heart.style.top = `50%`;
+    heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+    heart.style.animation = 'fall 1s ease-out forwards';
+    heart.style.opacity = 1;
+    heart.innerHTML = "💖";
+    heartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 1000);
   }
 }
+
+// Exit Message for Kalyani
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  e.returnValue = "Kalyani, you are the most special part of this calculator ❤️";
+});
