@@ -7,17 +7,22 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Dark Mode Toggle -->
   <div class="theme-toggle">
     <button onclick="toggleTheme()">🌓</button>
   </div>
 
-  <div class="hearts-container" id="hearts"></div>
+  <!-- Hearts Container -->
+  <div id="hearts" class="hearts-container"></div>
 
+  <!-- Calculator -->
   <div class="calculator">
-    <div class="header">For My Love, Kalyaniii ❤️</div>
-    <div id="display" class="display">
-      <div id="message1">0</div>
-      <div id="message2"></div>
+    <div class="header">For My Love, Kalyanii ❤️</div>
+    <div class="display">
+      <div id="message1" class="line">0</div>
+      <div id="message2" class="line"></div>
+      <div id="message3" class="line"></div>
+      <div id="message4" class="line"></div>
     </div>
     <div class="buttons">
       <button onclick="press('C')">C</button>
@@ -45,7 +50,6 @@
     </div>
   </div>
 
-  <audio id="clickSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_573848c671.mp3"></audio>
   <script src="script.js"></script>
 </body>
 </html>
