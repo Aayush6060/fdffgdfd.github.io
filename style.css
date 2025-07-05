@@ -1,33 +1,24 @@
 :root {
-  --bg: #2a1a2e;
-  --card: #000;
-  --text: #fff;
-  --btn: #111;
-  --btn-hover: #ff8fa3;
-  --header: #ff5e78;
-}
-
-body.light {
   --bg: #fff0f5;
-  --card: #ffe4ec;
   --text: #d6336c;
-  --btn: #fff;
-  --btn-hover: #ffd9e4;
-  --header: #ffb6c1;
+  --card: #fff;
+  --button-bg: #fff;
+  --button-hover: #ffe4ec;
+  --glow: #ffb6c1;
 }
 
 body {
   margin: 0;
-  background: var(--bg);
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: var(--bg);
   color: var(--text);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 100vh;
-  overflow: hidden;
-  transition: all 0.4s ease;
+  justify-content: center;
+  transition: background 0.3s ease;
 }
 
 .theme-toggle {
@@ -38,56 +29,48 @@ body {
 }
 
 .theme-toggle button {
-  background: var(--btn);
-  color: var(--text);
+  background: var(--button-hover);
   border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 10px;
   font-size: 16px;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: var(--text);
+  box-shadow: 0 0 10px var(--glow);
 }
 
 .calculator {
   background-color: var(--card);
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border-radius: 25px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   width: 340px;
   overflow: hidden;
   z-index: 1;
-  animation: slideIn 1s ease;
+  animation: popIn 1s ease;
+  border: 2px solid var(--glow);
 }
 
 .header {
   text-align: center;
   font-size: 22px;
   padding: 15px;
-  background-color: var(--header);
+  background: linear-gradient(to right, #ff85a2, #ffc0cb);
   color: white;
   font-weight: bold;
+  border-bottom: 2px solid #fff;
 }
 
 .display {
-  background-color: var(--btn);
+  background-color: var(--button-hover);
   padding: 20px;
   font-size: 16px;
   display: flex;
   flex-direction: column;
-  min-height: 110px;
+  height: 100px;
   justify-content: center;
   text-align: right;
-  border-bottom: 1px solid var(--btn-hover);
-}
-
-#message1 {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-#message2,
-#message3,
-#message4 {
-  font-size: 14px;
-  opacity: 0.8;
+  border-bottom: 1px solid #ffd6e7;
+  color: #b30047;
 }
 
 .buttons {
@@ -99,22 +82,28 @@ body {
 button {
   font-size: 20px;
   padding: 20px;
-  background-color: var(--btn);
-  border: 1px solid #444;
+  background-color: var(--button-bg);
+  border: 1px solid #ffe0ec;
   cursor: pointer;
-  transition: background 0.2s;
-  color: var(--text);
+  transition: all 0.2s ease;
+  color: #b30047;
 }
 
 button:hover {
-  background-color: var(--btn-hover);
+  background-color: var(--button-hover);
+  box-shadow: inset 0 0 5px #ffb6c1;
 }
 
 .zero {
   grid-column: span 2;
 }
 
-/* Heart animation styles */
+@keyframes popIn {
+  from {opacity: 0; transform: scale(0.7);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+/* Hearts Falling */
 .hearts-container {
   position: fixed;
   top: 0;
@@ -131,7 +120,7 @@ button:hover {
   color: red;
   font-size: 20px;
   animation: fall 4s linear infinite;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 @keyframes fall {
@@ -142,16 +131,5 @@ button:hover {
   100% {
     transform: translateY(100vh) rotate(360deg);
     opacity: 0;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateY(-30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0px);
-    opacity: 1;
   }
 }
