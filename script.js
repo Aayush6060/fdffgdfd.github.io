@@ -1,3 +1,5 @@
+// romantic-calculator.js
+
 let input = "";
 const heartsContainer = document.getElementById("hearts");
 
@@ -81,7 +83,7 @@ setInterval(() => {
   setTimeout(() => heart.remove(), 4000);
 }, 300);
 
-// Exit message
+// Exit message for Kalyani
 window.addEventListener("beforeunload", function (e) {
   e.preventDefault();
   e.returnValue = "Kalyani, you are the most special part of this calculator ❤️";
