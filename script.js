@@ -35,10 +35,10 @@ function updateDisplay(line1, line2, line3, line4) {
 
 function showLove() {
   updateDisplay(
-    "I LOVE YOU NA BABYYY ❤️",
+    "I REALLY LOVE YOU NA BABYYY ❤️",
     "Jaannn maan bhi jao ab ❤️",
     "mala fakt tuchh havi an babe 🥰",
-    "maannn jao an ❤️❤️"
+    "maannn jao an yrr ❤️❤️"
   );
   burstHearts();
 }
