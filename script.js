@@ -1,28 +1,27 @@
 let input = "";
-const sound = document.getElementById("clickSound");
+const heartsContainer = document.getElementById("hearts");
 
 function press(value) {
-  sound.currentTime = 0;
-  sound.play();
-
   if (value === "C") {
     input = "";
-    updateDisplay("0", "");
+    updateDisplay("0", "", "", "");
   } else if (value === "DEL") {
     input = input.slice(0, -1);
-    updateDisplay(input || "0", "");
+    updateDisplay(input || "0", "", "", "");
   } else if (value === "=") {
     try {
-      eval(input); // Evaluate without showing result
+      const result = eval(input);
       showLove();
-      input = "";
+      input = result.toString();
     } catch {
-      updateDisplay("Error", "");
+      updateDisplay("Error", "", "", "");
     }
   } else {
     input += value;
-    updateDisplay(input, "");
+    updateDisplay(input, "", "", "");
   }
+
+  createRandomHeart();
 }
 
 function updateDisplay(line1, line2, line3, line4) {
@@ -33,7 +32,12 @@ function updateDisplay(line1, line2, line3, line4) {
 }
 
 function showLove() {
-  updateDisplay("I LOVE YOU Na BABYYY ❤️", "Jaannn maan bhi jao ab ❤️", "mala fakt tuchh havi an babe 🥰", " maannn jao an ❤️❤️");
+  updateDisplay(
+    "I LOVE YOU Na BABYYY ❤️",
+    "Jaannn maan bhi jao ab ❤️",
+    "mala fakt tuchh havi an babe 🥰",
+    "maannn jao an ❤️❤️"
+  );
   burstHearts();
 }
 
@@ -41,11 +45,10 @@ function toggleTheme() {
   document.body.classList.toggle("dark");
 }
 
-// Falling Hearts
-const heartsContainer = document.getElementById('hearts');
+// Heart rain
 setInterval(() => {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
+  const heart = document.createElement("div");
+  heart.className = "heart";
   heart.style.left = `${Math.random() * 100}%`;
   heart.style.fontSize = `${Math.random() * 20 + 10}px`;
   heart.innerHTML = "❤️";
@@ -53,11 +56,20 @@ setInterval(() => {
   setTimeout(() => heart.remove(), 4000);
 }, 300);
 
-// Burst hearts on love
+function createRandomHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = `${Math.random() * 100}%`;
+  heart.style.fontSize = `${Math.random() * 15 + 10}px`;
+  heart.innerHTML = "❤️";
+  heartsContainer.appendChild(heart);
+  setTimeout(() => heart.remove(), 3000);
+}
+
 function burstHearts() {
   for (let i = 0; i < 20; i++) {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
+    const heart = document.createElement("div");
+    heart.className = "heart";
     heart.style.left = `${50 + (Math.random() - 0.5) * 100}%`;
     heart.style.top = `50%`;
     heart.style.fontSize = `${Math.random() * 20 + 15}px`;
@@ -68,3 +80,9 @@ function burstHearts() {
     setTimeout(() => heart.remove(), 1000);
   }
 }
+
+// Goodbye message
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  e.returnValue = "Kalyani, this was all for you. ❤️";
+});
