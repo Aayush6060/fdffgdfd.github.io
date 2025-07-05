@@ -42,19 +42,8 @@ function showLove() {
 }
 
 function toggleTheme() {
-  document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
 }
-
-// Heart rain
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.style.left = `${Math.random() * 100}%`;
-  heart.style.fontSize = `${Math.random() * 20 + 10}px`;
-  heart.innerHTML = "❤️";
-  heartsContainer.appendChild(heart);
-  setTimeout(() => heart.remove(), 4000);
-}, 300);
 
 function createRandomHeart() {
   const heart = document.createElement("div");
@@ -81,8 +70,19 @@ function burstHearts() {
   }
 }
 
-// Goodbye message
+// Continuous falling hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = `${Math.random() * 100}%`;
+  heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+  heart.innerHTML = "❤️";
+  heartsContainer.appendChild(heart);
+  setTimeout(() => heart.remove(), 4000);
+}, 300);
+
+// Exit message
 window.addEventListener("beforeunload", function (e) {
   e.preventDefault();
-  e.returnValue = "Kalyani, this was all for you. ❤️";
+  e.returnValue = "Kalyani, you are the most special part of this calculator ❤️";
 });
