@@ -38,7 +38,7 @@ function showLove() {
     "I REALLY LOVE YOU NA BABYYY ❤️",
     "Jaannn maan bhi jao ab ❤️",
     "mala fakt tuchh havi an babe 🥰",
-    "maannn jao an yrr ❤️❤️"
+    "maannn jao an yrr ❤️❤️❤️"
   );
   burstHearts();
 }
